@@ -9,6 +9,9 @@ import {OnChangePlugin} from "./components/OnChangePlugin";
 import {CustomTextActions} from "./components/CustomTextActions";
 import {CustomAlignActions} from "./components/CustomAlignActions";
 import './App.css'
+import {CustomHeadingActions} from "./components/CustomHeadingActions";
+import {HeadingNode} from "@lexical/rich-text";
+import {CustomHeadingPlugin} from "./components/CustomHeadingPLugin";
 
 export const Editor = () => {
     const CustomContent = useMemo(() => {
@@ -36,17 +39,26 @@ export const Editor = () => {
 
     const lexicalConfig = {
         namespace: 'My Rich Text Editor',
+        nodes: [HeadingNode],
         theme: {
             text: {
                 bold: "text-bold",
-                    italic: "text-italic",
-                    underline: "text-underline",
-                    code: 'text-code',
-                    highlight: 'text-highlight',
-                    strikethrough: 'text-strikethrough',
-                    subscript: 'text-subscript',
-                    superscript: 'text-superscript',
+                italic: "text-italic",
+                underline: "text-underline",
+                code: 'text-code',
+                highlight: 'text-highlight',
+                strikethrough: 'text-strikethrough',
+                subscript: 'text-subscript',
+                superscript: 'text-superscript',
             },
+            heading: {
+                h1: "text-5xl font-extrabold dark:text-white",
+                h2: "text-4xl font-bold dark:text-white",
+                h3: "text-3xl font-bold dark:text-white",
+                h4: "text-2xl font-bold dark:text-white",
+                h5: "text-xl font-bold dark:text-white",
+            },
+            banner: 'banner'
         },
         onError: (e) => {
             console.log('ERROR:', e)
@@ -63,8 +75,10 @@ export const Editor = () => {
                 />
                 <OnChangePlugin />
                 <HistoryPlugin/>
+                <CustomHeadingPlugin/>
                 <CustomTextActions/>
                 <CustomAlignActions/>
+                <CustomHeadingActions/>
                 <div style={{margin: '20px 0px'}}>
                     <CustomHistoryActions/>
                 </div>
