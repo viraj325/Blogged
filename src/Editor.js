@@ -1,17 +1,19 @@
-import React, {useMemo} from 'react';
-import {LexicalComposer} from '@lexical/react/LexicalComposer';
-import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin";
-import {ContentEditable} from '@lexical/react/LexicalContentEditable';
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+import React, {useMemo} from 'react'
+import {LexicalComposer} from '@lexical/react/LexicalComposer'
+import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
+import {ContentEditable} from '@lexical/react/LexicalContentEditable'
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin'
-import {CustomHistoryActions} from "./CustomHistoryActions";
-import {OnChangePlugin} from "./components/OnChangePlugin";
-import {CustomTextActions} from "./components/CustomTextActions";
-import {CustomAlignActions} from "./components/CustomAlignActions";
+import {CustomHistoryActions} from "./CustomHistoryActions"
+import {OnChangePlugin} from "./components/OnChangePlugin"
+import {CustomTextActions} from "./components/CustomTextActions"
+import {CustomAlignActions} from "./components/CustomAlignActions"
+import {CustomHeadingActions} from "./components/CustomHeadingActions"
+import {HeadingNode} from "@lexical/rich-text"
+import {CustomHeadingPlugin} from "./components/CustomHeadingPLugin"
+import {BannerNode} from "./node/BannerNode"
+
 import './App.css'
-import {CustomHeadingActions} from "./components/CustomHeadingActions";
-import {HeadingNode} from "@lexical/rich-text";
-import {CustomHeadingPlugin} from "./components/CustomHeadingPLugin";
 
 export const Editor = () => {
     const CustomContent = useMemo(() => {
@@ -39,7 +41,10 @@ export const Editor = () => {
 
     const lexicalConfig = {
         namespace: 'My Rich Text Editor',
-        nodes: [HeadingNode],
+        nodes: [
+            BannerNode,
+            HeadingNode
+        ],
         theme: {
             text: {
                 bold: "text-bold",
