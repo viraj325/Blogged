@@ -1,5 +1,6 @@
 import {
-    ElementNode
+    ElementNode,
+    $createParagraphNode
 } from "lexical"
 
 export class BannerNode extends ElementNode {
@@ -23,6 +24,33 @@ export class BannerNode extends ElementNode {
      */
     updateDOM(_prevNode, _dom, _config,) {
         return false
+    }
+
+    /**
+     * * Node should be set to paragraph when user delete all content
+     * */
+    collapseAtStart(_) {
+        const paragraph = $createParagraphNode();
+        const children = this.getChildren();
+        children.forEach((child) => paragraph.append(child));
+        this.replace(paragraph);
+        return true;
+    }
+
+    /**
+     * Node should be set to paragraph when user press Enter.
+     * Node will remain the same on Shift Enter
+     * */
+    insertNewAfter(_, restoreSelection) {
+        const paragraph = $createParagraphNode();
+        const direction = this.getDirection();
+        paragraph.setDirection(direction);
+        this.insertAfter(paragraph, restoreSelection);
+        return paragraph;
+    }
+
+    static importJSON(_) {
+        return new BannerNode()
     }
 
     exportJSON() {

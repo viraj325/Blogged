@@ -12,10 +12,15 @@ import {CustomHeadingActions} from "./components/CustomHeadingActions"
 import {HeadingNode} from "@lexical/rich-text"
 import {CustomHeadingPlugin} from "./components/CustomHeadingPLugin"
 import {BannerNode} from "./node/BannerNode"
-
+import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
+import {CustomBannerActions} from "./components/CustomBannerActions"
+import {$generateHtmlFromNodes} from "@lexical/html"
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import './App.css'
 
 export const Editor = () => {
+    const [editor] = useLexicalComposerContext()
+
     const CustomContent = useMemo(() => {
         return (
             <ContentEditable style={{
@@ -67,7 +72,8 @@ export const Editor = () => {
         },
         onError: (e) => {
             console.log('ERROR:', e)
-        }
+        },
+        editorState: editor
     }
 
     return (
@@ -78,16 +84,24 @@ export const Editor = () => {
                     placeholder={CustomPlaceholder}
                     ErrorBoundary={LexicalErrorBoundary}
                 />
-                <OnChangePlugin />
                 <HistoryPlugin/>
+                <OnChangePlugin/>
                 <CustomHeadingPlugin/>
-                <CustomTextActions/>
-                <CustomAlignActions/>
-                <CustomHeadingActions/>
-                <div style={{margin: '20px 0px'}}>
-                    <CustomHistoryActions/>
-                </div>
+                <CustomHistoryActions/>
+                <CustomBannerPlugin/>
+                 <div style={{margin: '20px 0px'}}>
+                     <CustomBannerActions/>
+                     <CustomHeadingActions/>
+                     <CustomTextActions/>
+                     <CustomAlignActions/>
+                 </div>
             </LexicalComposer>
+            <button onClick={() => {
+                //const htmlString = $generateHtmlFromNodes(editor, null)
+                //console.log("htmlString \n " + htmlString)
+            }}>
+                Save!
+            </button>
         </div>
     )
 }
