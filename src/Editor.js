@@ -10,7 +10,7 @@ import {CustomTextActions} from "./components/CustomTextActions"
 import {CustomAlignActions} from "./components/CustomAlignActions"
 import {CustomHeadingActions} from "./components/CustomHeadingActions"
 import {HeadingNode} from "@lexical/rich-text"
-import {CustomHeadingPlugin} from "./components/CustomHeadingPLugin"
+import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
 import {BannerNode} from "./node/BannerNode"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
 import {CustomBannerActions} from "./components/CustomBannerActions"
@@ -83,6 +83,14 @@ export const Editor = () => {
     return (
         <div style={{padding: '20px'}}>
             <LexicalComposer initialConfig={lexicalConfig}>
+                <div className="menu-bar">
+                    <CustomHistoryActions/>
+                    <CustomBannerActions/>
+                    <CustomHeadingActions/>
+                    <CustomTextActions/>
+                    <CustomAlignActions/>
+                </div>
+                <hr/>
                 <RichTextPlugin
                     contentEditable={CustomContent}
                     placeholder={null}
@@ -91,14 +99,7 @@ export const Editor = () => {
                 <HistoryPlugin/>
                 <OnChangePlugin/>
                 <CustomHeadingPlugin/>
-                <CustomHistoryActions/>
                 <CustomBannerPlugin/>
-                 <div style={{margin: '20px 0px'}}>
-                     <CustomBannerActions/>
-                     <CustomHeadingActions/>
-                     <CustomTextActions/>
-                     <CustomAlignActions/>
-                 </div>
             </LexicalComposer>
             <button onClick={() => {
                 //const htmlString = $generateHtmlFromNodes(editor, null)

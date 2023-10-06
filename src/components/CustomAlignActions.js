@@ -6,6 +6,7 @@ import {
     OUTDENT_CONTENT_COMMAND,
     INDENT_CONTENT_COMMAND
 } from 'lexical';
+import {Iterator} from "../Iterator";
 
 export const CustomAlignActions = () => {
     const [editor] = useLexicalComposerContext();
@@ -15,7 +16,24 @@ export const CustomAlignActions = () => {
     }
 
     return (
-        <div style={{marginTop: '10px'}}>
+        <Iterator
+            array={['Left', 'Center', 'Right', 'Justify']}
+            component={ value => (
+                <button onClick={() => handleOnClick(value.toLowerCase())}>{value}</button>
+            )}
+        />
+    )
+}
+
+/*
+<button onClick={() => editor.dispatchCommand(OUTDENT_CONTENT_COMMAND, undefined)}>
+                Outdent
+            </button>
+            <button onClick={() => editor.dispatchCommand(INDENT_CONTENT_COMMAND, undefined)}>
+                Indent
+            </button>
+
+<div style={{marginTop: '10px'}}>
             <span style={{fontWeight: 'bold'}}>Align actions</span>
             <div>
                 {[
@@ -41,5 +59,4 @@ export const CustomAlignActions = () => {
                 </button>
             </div>
         </div>
-    );
-}
+ */

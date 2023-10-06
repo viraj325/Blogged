@@ -10,6 +10,12 @@ export const CustomBannerActions = () => {
     }
 
     return (
+        <button onClick={handleOnClick}>Banner</button>
+    )
+}
+
+/*
+return (
         <div style={{marginTop: '10px'}}>
             <span style={{fontWeight: 'bold'}}>Heading actions</span>
             <div>
@@ -19,4 +25,4 @@ export const CustomBannerActions = () => {
             </div>
         </div>
     )
-}
+ */

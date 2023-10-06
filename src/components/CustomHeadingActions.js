@@ -1,7 +1,8 @@
 import {
     useLexicalComposerContext
 } from "@lexical/react/LexicalComposerContext"
-import {FORMAT_HEADING_COMMAND} from "./CustomHeadingPLugin"
+import {FORMAT_HEADING_COMMAND} from "./CustomHeadingPlugin"
+import {Iterator} from "../Iterator";
 
 export const CustomHeadingActions = () => {
     const [editor] = useLexicalComposerContext();
@@ -11,7 +12,17 @@ export const CustomHeadingActions = () => {
     }
 
     return (
-        <div style={{marginTop: '10px'}}>
+        <Iterator
+            array={["h1", "h2", "h3", "h4", "h5"]}
+            component={ tag => (
+                <button key={tag} onClick={() => handleOnClick(tag)}>{tag}</button>
+            )}
+        />
+    )
+}
+
+/*
+<div style={{marginTop: '10px'}}>
             <span style={{fontWeight: 'bold'}}>Align actions</span>
             <div>
                 {(["h1", "h2", "h3", "h4", "h5"].map((tag) => {
@@ -23,5 +34,4 @@ export const CustomHeadingActions = () => {
                 }))}
             </div>
         </div>
-    );
-}
+ */

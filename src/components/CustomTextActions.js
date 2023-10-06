@@ -1,5 +1,6 @@
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {FORMAT_TEXT_COMMAND} from 'lexical';
+import {Iterator} from "../Iterator";
 
 export const CustomTextActions = () => {
     const [editor] = useLexicalComposerContext();
@@ -9,7 +10,26 @@ export const CustomTextActions = () => {
     }
 
     return (
-        <div style={{marginTop: '10px'}}>
+        <Iterator
+            array={[
+                'Bold',
+                'Italic',
+                'Underline',
+                'Code',
+                'Highlight',
+                'Strikethrough',
+                'Subscript',
+                'Superscript'
+            ]}
+            component={ item => (
+                <button onClick={() => handleOnClick(item.toLowerCase())}>{item}</button>
+            )}
+        />
+    )
+}
+
+/*
+<div style={{marginTop: '10px'}}>
             <span style={{fontWeight: 'bold'}}>Text actions</span>
             <div>
                 {[
@@ -31,5 +51,4 @@ export const CustomTextActions = () => {
                 })}
             </div>
         </div>
-    );
-}
+ */
