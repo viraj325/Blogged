@@ -22,6 +22,7 @@
     outline: none;
     margin-top: 3px;
     margin-bottom: 3px;
+    transition: 0.3s;
 }
 
 .menu-item:hover {
