@@ -15,7 +15,7 @@ export const CustomHeadingActions = () => {
         <Iterator
             array={["h1", "h2", "h3", "h4", "h5"]}
             component={ tag => (
-                <button key={tag} onClick={() => handleOnClick(tag)}>{tag}</button>
+                <button className="menu-item" key={tag} onClick={() => handleOnClick(tag)}>{tag}</button>
             )}
         />
     )

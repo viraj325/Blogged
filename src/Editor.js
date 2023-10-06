@@ -17,6 +17,7 @@ import {CustomBannerActions} from "./components/CustomBannerActions"
 import {$generateHtmlFromNodes} from "@lexical/html"
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import './App.css'
+import './Toolbar.css'
 
 export const Editor = () => {
     const CustomContent = useMemo(() => {
@@ -90,7 +91,6 @@ export const Editor = () => {
                     <CustomTextActions/>
                     <CustomAlignActions/>
                 </div>
-                <hr/>
                 <RichTextPlugin
                     contentEditable={CustomContent}
                     placeholder={null}

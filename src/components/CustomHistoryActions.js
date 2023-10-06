@@ -5,8 +5,8 @@ export const CustomHistoryActions = () => {
     const [editor] = useLexicalComposerContext()
     return (
         <>
-            <button onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}>Undo</button>
-            <button onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}>Redo</button>
+            <button className="menu-item" onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}>Undo</button>
+            <button className="menu-item" onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}>Redo</button>
         </>
     )
 }

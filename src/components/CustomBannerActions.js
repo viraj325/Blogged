@@ -10,7 +10,7 @@ export const CustomBannerActions = () => {
     }
 
     return (
-        <button onClick={handleOnClick}>Banner</button>
+        <button className="menu-item" onClick={handleOnClick}>Banner</button>
     )
 }
 

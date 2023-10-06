@@ -19,7 +19,7 @@ export const CustomAlignActions = () => {
         <Iterator
             array={['Left', 'Center', 'Right', 'Justify']}
             component={ value => (
-                <button onClick={() => handleOnClick(value.toLowerCase())}>{value}</button>
+                <button className="menu-item" onClick={() => handleOnClick(value.toLowerCase())}>{value}</button>
             )}
         />
     )

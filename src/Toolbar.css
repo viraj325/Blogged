@@ -1,0 +1,27 @@
+.menu-bar {
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    background: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 2px 20px;
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    height: auto;
+    outline: none;
+    border: none;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+    outline: none;
+}
+
+.menu-item:hover {
+    background-color: red;
+}

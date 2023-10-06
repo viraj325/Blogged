@@ -22,7 +22,7 @@ export const CustomTextActions = () => {
                 'Superscript'
             ]}
             component={ item => (
-                <button onClick={() => handleOnClick(item.toLowerCase())}>{item}</button>
+                <button className="menu-item" onClick={() => handleOnClick(item.toLowerCase())}>{item}</button>
             )}
         />
     )
