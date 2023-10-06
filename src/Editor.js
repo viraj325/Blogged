@@ -4,7 +4,7 @@ import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
 import {ContentEditable} from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin'
-import {CustomHistoryActions} from "./CustomHistoryActions"
+import {CustomHistoryActions} from "./components/CustomHistoryActions"
 import {OnChangePlugin} from "./components/OnChangePlugin"
 import {CustomTextActions} from "./components/CustomTextActions"
 import {CustomAlignActions} from "./components/CustomAlignActions"
@@ -19,8 +19,6 @@ import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import './App.css'
 
 export const Editor = () => {
-    const [editor] = useLexicalComposerContext()
-
     const CustomContent = useMemo(() => {
         return (
             <ContentEditable style={{
@@ -73,7 +71,7 @@ export const Editor = () => {
         onError: (e) => {
             console.log('ERROR:', e)
         },
-        editorState: editor
+        // editorState: editor
     }
 
     return (
