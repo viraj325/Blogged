@@ -21,26 +21,32 @@ import './App.css'
 export const Editor = () => {
     const CustomContent = useMemo(() => {
         return (
-            <ContentEditable style={{
+            <ContentEditable className="main-page"/>
+            /*
+            {{
                 position: 'relative',
                 borderColor: 'rgba(255,211,2,0.68)',
                 border: '2px solid red',
                 borderRadius: '5px',
                 maxWidth: '100%',
                 padding: '10px'
-            }}/>
+            }}
+             */
         )
     }, []);
 
-    const CustomPlaceholder = useMemo(() => {
+    /*const CustomPlaceholder = useMemo(() => {
         return (
-            <div style={{
+            /*
+            style={{
                 position: 'absolute', top: 30, left: 30,
-            }}>
+            }}
+
+            <div >
                 Enter some text...
             </div>
         )
-    }, []);
+    }, [])*/
 
     const lexicalConfig = {
         namespace: 'My Rich Text Editor',
@@ -79,7 +85,7 @@ export const Editor = () => {
             <LexicalComposer initialConfig={lexicalConfig}>
                 <RichTextPlugin
                     contentEditable={CustomContent}
-                    placeholder={CustomPlaceholder}
+                    placeholder={null}
                     ErrorBoundary={LexicalErrorBoundary}
                 />
                 <HistoryPlugin/>

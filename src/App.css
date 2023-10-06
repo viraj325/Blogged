@@ -1,3 +1,28 @@
+html, body {
+    background: whitesmoke;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+p {
+    margin: 0;
+}
+
+.main-page {
+    background: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 22px 20px;
+    margin-top: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
+    height: auto;
+    min-height: 250px;
+    outline: none;
+    border: none;
+}
+
 .text-bold {
     font-weight: bold;
 }
@@ -33,13 +58,9 @@
     vertical-align: super;
 }
 
-p {
-    margin: 0;
-}
-
 .banner {
-    border-left: 3px coral solid;
-    background-color: lightskyblue;
+    border-left: 3px #000000 solid;
+    background-color: rgba(115, 115, 115, 0.07);
     border-radius: 3px;
-    padding: 10px 0;
+    padding: 10px 10px;
 }
