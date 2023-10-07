@@ -27,4 +27,5 @@
 
 .menu-item:hover {
     background-color: antiquewhite;
+    cursor: pointer;
 }

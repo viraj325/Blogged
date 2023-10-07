@@ -18,6 +18,7 @@ import {$generateHtmlFromNodes} from "@lexical/html"
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import './App.css'
 import './Toolbar.css'
+import {DocumentActions} from "./DocumentActions";
 
 export const Editor = () => {
     const CustomContent = useMemo(() => {
@@ -85,6 +86,7 @@ export const Editor = () => {
         <div style={{padding: '20px'}}>
             <LexicalComposer initialConfig={lexicalConfig}>
                 <div className="menu-bar">
+                    <DocumentActions/>
                     <CustomHistoryActions/>
                     <CustomBannerActions/>
                     <CustomHeadingActions/>
@@ -101,12 +103,6 @@ export const Editor = () => {
                 <CustomHeadingPlugin/>
                 <CustomBannerPlugin/>
             </LexicalComposer>
-            <button onClick={() => {
-                //const htmlString = $generateHtmlFromNodes(editor, null)
-                //console.log("htmlString \n " + htmlString)
-            }}>
-                Save!
-            </button>
         </div>
     )
 }

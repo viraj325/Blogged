@@ -7,6 +7,7 @@ import {
     INDENT_CONTENT_COMMAND
 } from 'lexical';
 import {Iterator} from "../Iterator";
+import {MdFormatAlignCenter, MdFormatAlignJustify, MdFormatAlignLeft, MdFormatAlignRight} from "react-icons/md";
 
 export const CustomAlignActions = () => {
     const [editor] = useLexicalComposerContext();
@@ -16,12 +17,12 @@ export const CustomAlignActions = () => {
     }
 
     return (
-        <Iterator
-            array={['Left', 'Center', 'Right', 'Justify']}
-            component={ value => (
-                <button className="menu-item" onClick={() => handleOnClick(value.toLowerCase())}>{value}</button>
-            )}
-        />
+        <div style={{display: "flex"}}>
+            <button className="menu-item" onClick={() => handleOnClick('Justify'.toLowerCase())}><MdFormatAlignJustify/></button>
+            <button className="menu-item" onClick={() => handleOnClick('Center'.toLowerCase())}><MdFormatAlignCenter/></button>
+            <button className="menu-item" onClick={() => handleOnClick('Left'.toLowerCase())}><MdFormatAlignLeft/></button>
+            <button className="menu-item" onClick={() => handleOnClick('Right'.toLowerCase())}><MdFormatAlignRight/></button>
+        </div>
     )
 }
 
