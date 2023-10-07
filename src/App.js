@@ -13,7 +13,7 @@ const firebaseConfig = {
   measurementId: "G-2NWBBP9VLV"
 }
 
-const app = initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
 
 function App() {
   return (
