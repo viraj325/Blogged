@@ -9,6 +9,13 @@ p {
     margin: 0;
 }
 
+.title {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: xx-large;
+}
+
 .main-page {
     background: white;
     border-bottom-left-radius: 30px;

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, {useMemo, useState} from 'react'
 import {LexicalComposer} from '@lexical/react/LexicalComposer'
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
 import {ContentEditable} from '@lexical/react/LexicalContentEditable'
@@ -14,13 +14,13 @@ import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
 import {BannerNode} from "./node/BannerNode"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
 import {CustomBannerActions} from "./components/CustomBannerActions"
-import {$generateHtmlFromNodes} from "@lexical/html"
-import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
+import {DocumentActions} from "./DocumentActions"
 import './App.css'
 import './Toolbar.css'
-import {DocumentActions} from "./DocumentActions";
 
 export const Editor = () => {
+    const [title, setTitle] = useState('Untitled')
+
     const CustomContent = useMemo(() => {
         return (
             <ContentEditable className="main-page"/>
@@ -84,6 +84,12 @@ export const Editor = () => {
 
     return (
         <div style={{padding: '20px'}}>
+            <div style={{textAlign: "center"}}>
+                <input className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
+                    setTitle(v.target.value)
+                    console.log("New Title: " + title)
+                }}/>
+            </div>
             <LexicalComposer initialConfig={lexicalConfig}>
                 <div className="menu-bar">
                     <DocumentActions/>

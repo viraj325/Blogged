@@ -4,13 +4,14 @@ import {$generateHtmlFromNodes} from "@lexical/html"
 import {
     MdOutlineCloudUpload,
     MdOutlineFileDownload,
-    MdOutlineFileUpload
+    MdOutlineFileUpload, MdOutlineRefresh
 } from "react-icons/md"
 import React, {useState} from "react"
 
 export const DocumentActions = () => {
     const [editor] = useLexicalComposerContext()
     const [type, setType] = useState("firebase")
+    const [showLoading, setShowLoading] = useState(false)
 
     const downloadHTMLFile = (data) => {
         const element = document.createElement("a")
@@ -33,6 +34,7 @@ export const DocumentActions = () => {
         // 'file' comes from the Blob or File API
         uploadBytes(storageRef, file, metadata).then((snapshot) => {
             console.log('Uploaded a blob or file!')
+            setShowLoading(false)
         })
     }
 
@@ -53,10 +55,14 @@ export const DocumentActions = () => {
 
     return (
         <div style={{display: "flex"}}>
-            <button className="menu-item" onClick={() => {
-                setType("firebase")
-                listener()
-            }}><MdOutlineCloudUpload/></button>
+            {
+                showLoading ? <button style={{transition: '0.3s'}} className="menu-item">Syncing</button> :
+                <button style={{transition: '0.3s'}} className="menu-item" onClick={() => {
+                    setShowLoading(true)
+                    setType("firebase")
+                    listener()
+                }}><MdOutlineCloudUpload/></button>
+            }
             <button className="menu-item" onClick={importHTML}><MdOutlineFileUpload/></button>
             <button className="menu-item" onClick={() => {
                 setType("download")
