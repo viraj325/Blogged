@@ -1,14 +1,16 @@
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
-import {$generateHtmlFromNodes} from "@lexical/html"
+import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
 import {
     MdOutlineCloudUpload,
     MdOutlineFileDownload,
-    MdOutlineFileUpload, MdOutlineRefresh
+    MdOutlineFileUpload
 } from "react-icons/md"
-import React, {useState} from "react"
+import React, {useRef, useState} from "react"
+import {$getRoot, $insertNodes} from "lexical"
 
 export const DocumentActions = () => {
+    const inputFile = useRef(null)
     const [editor] = useLexicalComposerContext()
     const [type, setType] = useState("firebase")
     const [showLoading, setShowLoading] = useState(false)
@@ -40,8 +42,26 @@ export const DocumentActions = () => {
 
     const saveLocalSnapshot = () => {}
 
-    const importHTML = () => {
-        // do something
+    const importHTML = (data) => {
+        editor.update(() => {
+            // In the browser you can use the native DOMParser API to parse the HTML string.
+            const parser = new DOMParser()
+            const dom = parser.parseFromString(data, 'text/html')
+
+            // Once you have the DOM instance it's easy to generate LexicalNodes.
+            const nodes = $generateNodesFromDOM(editor, dom)
+
+            // Select the root
+            $getRoot().select()
+
+            // Insert them at a selection.
+            $insertNodes(nodes)
+        })
+    }
+
+    const onButtonClick = () => {
+        // `current` points to the mounted file input element
+        inputFile.current.click();
     }
 
     function listener() {
@@ -63,11 +83,12 @@ export const DocumentActions = () => {
                     listener()
                 }}><MdOutlineCloudUpload/></button>
             }
-            <button className="menu-item" onClick={importHTML}><MdOutlineFileUpload/></button>
+            <button className="menu-item" onClick={onButtonClick}><MdOutlineFileUpload/></button>
             <button className="menu-item" onClick={() => {
                 setType("download")
                 listener()
             }}><MdOutlineFileDownload/></button>
+            <input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
         </div>
     )
 }
