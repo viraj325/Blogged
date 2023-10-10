@@ -17,9 +17,11 @@ import {CustomBannerActions} from "./components/CustomBannerActions"
 import {DocumentActions} from "./DocumentActions"
 import './App.css'
 import './Toolbar.css'
+import {MdArrowBack} from "react-icons/md";
 
 export const Editor = () => {
     const [title, setTitle] = useState('Untitled')
+    const [isTitleEditDisabled, setTitleEditDisabled] = useState(true)
 
     const CustomContent = useMemo(() => {
         return (
@@ -84,12 +86,14 @@ export const Editor = () => {
 
     return (
         <div className="main-div">
-            <div style={{textAlign: "center"}}>
-                <input style={{textAlign: "center"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
+            <div className="main-header">
+                <button className="circular-button"><MdArrowBack/></button>
+                <input disabled={isTitleEditDisabled} style={{textAlign: "start"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
                     setTitle(v.target.value)
                     console.log("New Title: " + title)
                 }}/>
             </div>
+
             <LexicalComposer initialConfig={lexicalConfig}>
                 <div className="menu-bar">
                     <DocumentActions/>
@@ -99,6 +103,7 @@ export const Editor = () => {
                     <CustomTextActions/>
                     <CustomAlignActions/>
                 </div>
+
                 <RichTextPlugin
                     contentEditable={CustomContent}
                     placeholder={null}
@@ -109,6 +114,21 @@ export const Editor = () => {
                 <CustomHeadingPlugin/>
                 <CustomBannerPlugin/>
             </LexicalComposer>
+
+            <div className="action-menu">
+                <button className="action-button">Share</button>
+                {
+                    isTitleEditDisabled ?
+                        <button className="action-button" onClick={() => {
+                            setTitleEditDisabled(false)
+                        }}>Rename</button> :
+                        <button className="action-button-active" onClick={() => {
+                            setTitleEditDisabled(true)
+                        }}>Done</button>
+                }
+                <button className="action-button">Metadata</button>
+                <button className="action-button">Delete</button>
+            </div>
         </div>
     )
 }

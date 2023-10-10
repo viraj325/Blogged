@@ -31,6 +31,47 @@
     cursor: pointer;
 }
 
+.action-menu {
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: auto;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+}
+
+.action-button {
+    width: 120px;
+    height: 40px;
+    background: antiquewhite;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-right: 20px;
+}
+
+.action-button:hover {
+    background: #FFDEADFF;
+}
+
+.action-button-active {
+    width: 120px;
+    height: 40px;
+    background: #FFDEADFF;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-right: 20px;
+}
+
 @media screen and (max-width: 600px) {
     .menu-bar {
         margin-left: 7.5%;

@@ -1,6 +1,6 @@
-import './App.css'
 import { initializeApp } from "firebase/app"
-import {Editor} from "./Editor";
+import { Editor } from "./Editor"
+import './App.css'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDfWBs9pSniOs12bns86pjgLMurnZubKGE",
