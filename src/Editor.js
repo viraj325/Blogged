@@ -83,9 +83,9 @@ export const Editor = () => {
     }
 
     return (
-        <div style={{padding: '20px'}}>
+        <div className="main-div">
             <div style={{textAlign: "center"}}>
-                <input className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
+                <input style={{textAlign: "center"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
                     setTitle(v.target.value)
                     console.log("New Title: " + title)
                 }}/>

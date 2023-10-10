@@ -6,12 +6,13 @@
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     padding: 2px 20px;
-    margin-top: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
     height: auto;
     outline: none;
     border: none;
+    transition: 0.5s;
 }
 
 .menu-item {
@@ -28,4 +29,25 @@
 .menu-item:hover {
     background-color: antiquewhite;
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .menu-bar {
+        margin-left: 7.5%;
+        margin-right: 7.5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .menu-bar {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .menu-item {
+        width: auto;
+        height: 50px;
+    }
 }

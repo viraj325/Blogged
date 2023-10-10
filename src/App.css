@@ -1,12 +1,7 @@
-html, body {
-    background: whitesmoke;
-    margin: 0;
+.main-div {
     height: 100%;
     width: 100%;
-}
-
-p {
-    margin: 0;
+    padding: 20px;
 }
 
 .title {
@@ -21,12 +16,13 @@ p {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     padding: 5px 20px 22px;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 10%;
+    margin-right: 10%;
     height: auto;
     min-height: 575px;
     outline: none;
     border: none;
+    transition: 0.5s;
 }
 
 .text-bold {
@@ -71,4 +67,25 @@ p {
     background-color: rgba(255, 222, 173, 0.5);
     border-radius: 3px;
     padding: 10px 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .main-page {
+        margin-left: 7.5%;
+        margin-right: 7.5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .main-page {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .main-div {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }

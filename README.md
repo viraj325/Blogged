@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+https://playground.lexical.dev/
+https://javascript.plainenglish.io/getting-started-with-lexical-2c8b94c9bdd9
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
