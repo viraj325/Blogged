@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Main from "./Main"
 import App from "./App"
 
 export default function AppRouter() {
     return (
-        <Router basename="/main">
+        <BrowserRouter>
             <Routes>
-                <Route path={"/editor"} component={App}/>
-                <Route path={"/"} component={Main}/>
+                <Route path="/" element={<Main />}/>
+                <Route path="/editor" element={<App/>}/>
             </Routes>
-        </Router>
+        </BrowserRouter>
     )
 }

@@ -18,8 +18,10 @@ import {DocumentActions} from "./DocumentActions"
 import './App.css'
 import './Toolbar.css'
 import {MdArrowBack} from "react-icons/md";
+import {useNavigate} from "react-router-dom";
 
 export const Editor = () => {
+    let navigate = useNavigate()
     const [title, setTitle] = useState('Untitled')
     const [isTitleEditDisabled, setTitleEditDisabled] = useState(true)
 
@@ -87,7 +89,9 @@ export const Editor = () => {
     return (
         <div className="main-div">
             <div className="main-header">
-                <button className="circular-button"><MdArrowBack/></button>
+                <button className="circular-button" onClick={() => {
+                    navigate("/")
+                }}><MdArrowBack/></button>
                 <input disabled={isTitleEditDisabled} style={{textAlign: "start"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
                     setTitle(v.target.value)
                     console.log("New Title: " + title)
@@ -127,6 +131,7 @@ export const Editor = () => {
                         }}>Done</button>
                 }
                 <button className="action-button">Metadata</button>
+                <button className="action-button">Dark</button>
                 <button className="action-button">Delete</button>
             </div>
         </div>
