@@ -1,3 +1,6 @@
+# Example
+![image](https://github.com/viraj325/Blogged/assets/37918393/9afc249a-fe84-4c34-bc0c-fae70aaee7e1)
+
 # Getting Started with Create React App
 
 https://playground.lexical.dev/
