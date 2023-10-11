@@ -17,8 +17,9 @@ import {CustomBannerActions} from "./components/CustomBannerActions"
 import {DocumentActions} from "./DocumentActions"
 import './App.css'
 import './Toolbar.css'
-import {MdArrowBack} from "react-icons/md";
+import {MdArrowBack, MdEmail, MdShare} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
+import {IoMdTrash} from "react-icons/io";
 
 export const Editor = () => {
     let navigate = useNavigate()
@@ -120,7 +121,8 @@ export const Editor = () => {
             </LexicalComposer>
 
             <div className="action-menu">
-                <button className="action-button">Share</button>
+                <button className="action-button"><MdShare/></button>
+                <button className="action-button"><MdEmail/></button>
                 {
                     isTitleEditDisabled ?
                         <button className="action-button" onClick={() => {
@@ -132,7 +134,7 @@ export const Editor = () => {
                 }
                 <button className="action-button">Metadata</button>
                 <button className="action-button">Dark</button>
-                <button className="action-button">Delete</button>
+                <button className="action-button"><IoMdTrash/></button>
             </div>
         </div>
     )

@@ -45,7 +45,9 @@
 }
 
 .action-button {
-    width: 120px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: auto;
     height: 40px;
     background: antiquewhite;
     border-radius: 30px;
@@ -61,7 +63,9 @@
 }
 
 .action-button-active {
-    width: 120px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: auto;
     height: 40px;
     background: #FFDEADFF;
     border-radius: 30px;
