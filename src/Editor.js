@@ -17,9 +17,9 @@ import {CustomBannerActions} from "./components/CustomBannerActions"
 import {DocumentActions} from "./DocumentActions"
 import './App.css'
 import './Toolbar.css'
-import {MdArrowBack, MdEmail, MdShare} from "react-icons/md";
+import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
-import {IoMdTrash} from "react-icons/io";
+import {IoMdCheckmark, IoMdTrash} from "react-icons/io";
 
 export const Editor = () => {
     let navigate = useNavigate()
@@ -121,20 +121,21 @@ export const Editor = () => {
             </LexicalComposer>
 
             <div className="action-menu">
-                <button className="action-button"><MdShare/></button>
-                <button className="action-button"><MdEmail/></button>
+                <button className="action-button" title="Share"><MdShare/></button>
+                <button className="action-button" title="Email"><MdEmail/></button>
                 {
                     isTitleEditDisabled ?
-                        <button className="action-button" onClick={() => {
+                        <button className="action-button" title="Rename" onClick={() => {
                             setTitleEditDisabled(false)
-                        }}>Rename</button> :
-                        <button className="action-button-active" onClick={() => {
+                        }}><MdDriveFileRenameOutline/></button> :
+                        <button className="action-button-active" title="Done" onClick={() => {
                             setTitleEditDisabled(true)
-                        }}>Done</button>
+                        }}><IoMdCheckmark/></button>
                 }
+                <button className="action-button" title="Move to Folder"><MdFolder/></button>
+                <button className="action-button" title="Turn on Dark Mode"><MdModeNight/></button>
+                <button className="action-button" title="Delete"><IoMdTrash/></button>
                 <button className="action-button">Metadata</button>
-                <button className="action-button">Dark</button>
-                <button className="action-button"><IoMdTrash/></button>
             </div>
         </div>
     )
