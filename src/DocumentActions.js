@@ -42,6 +42,10 @@ export const DocumentActions = () => {
 
     const saveLocalSnapshot = () => {}
 
+    const importHTMLFromCloud = () => {
+        // do something
+    }
+
     const importHTML = (data) => {
         editor.update(() => {
             // In the browser you can use the native DOMParser API to parse the HTML string.
@@ -61,7 +65,20 @@ export const DocumentActions = () => {
 
     const onButtonClick = () => {
         // `current` points to the mounted file input element
-        inputFile.current.click();
+        inputFile.current.click()
+    }
+
+    const handleInputFileChange = (event) => {
+        console.log("handle Input File Change")
+        console.log(inputFile.current.files[0])
+        const file = inputFile.current.files[0]
+        const reader = new FileReader()
+        reader.onload = function(e) {
+            const content = reader.result
+            alert(content)
+            importHTML(content)
+        }
+        reader.readAsText(file)
     }
 
     function listener() {
@@ -88,7 +105,7 @@ export const DocumentActions = () => {
                 setType("download")
                 listener()
             }}><MdOutlineFileDownload/></button>
-            <input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
+            <input type='file' id='file' onChange={handleInputFileChange} ref={inputFile} style={{display: 'none'}}/>
         </div>
     )
 }
