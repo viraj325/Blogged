@@ -1,4 +1,5 @@
 import React, {useMemo, useState} from 'react'
+import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md"
 import {LexicalComposer} from '@lexical/react/LexicalComposer'
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
 import {ContentEditable} from '@lexical/react/LexicalContentEditable'
@@ -11,18 +12,17 @@ import {CustomAlignActions} from "./components/CustomAlignActions"
 import {CustomHeadingActions} from "./components/CustomHeadingActions"
 import {HeadingNode, QuoteNode} from "@lexical/rich-text"
 import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
-import {BannerNode} from "./node/BannerNode"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
 import {CustomBannerActions} from "./components/CustomBannerActions"
 import {DocumentActions} from "./DocumentActions"
+import {BannerNode} from "./node/BannerNode"
+import {useNavigate} from "react-router-dom"
+import {IoMdCheckmark, IoMdTrash} from "react-icons/io"
+import {ListActions} from "./components/ListActions"
+import {ListItemNode, ListNode} from "@lexical/list"
+import {ListPlugin} from "@lexical/react/LexicalListPlugin"
 import './App.css'
 import './Toolbar.css'
-import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md";
-import {useNavigate} from "react-router-dom";
-import {IoMdCheckmark, IoMdTrash} from "react-icons/io";
-import {ListPlugin} from "./components/ListPlugin";
-import {ListActions} from "./components/ListActions";
-import {ListItemNode, ListNode} from "@lexical/list";
 
 export const Editor = () => {
     let navigate = useNavigate()

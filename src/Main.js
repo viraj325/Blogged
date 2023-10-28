@@ -1,8 +1,13 @@
+import {useNavigate} from "react-router-dom"
 
 export default function Main() {
-  return (
-    <div>
-      testing
-    </div>
-  )
+    let navigate = useNavigate()
+
+    return (
+        <div>
+            <button onClick={() => {
+                navigate('/editor')
+            }}>Editor</button>
+        </div>
+    )
 }
