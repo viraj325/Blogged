@@ -9,7 +9,7 @@ import {OnChangePlugin} from "./components/OnChangePlugin"
 import {CustomTextActions} from "./components/CustomTextActions"
 import {CustomAlignActions} from "./components/CustomAlignActions"
 import {CustomHeadingActions} from "./components/CustomHeadingActions"
-import {HeadingNode} from "@lexical/rich-text"
+import {HeadingNode, QuoteNode} from "@lexical/rich-text"
 import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
 import {BannerNode} from "./node/BannerNode"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
@@ -20,6 +20,9 @@ import './Toolbar.css'
 import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import {IoMdCheckmark, IoMdTrash} from "react-icons/io";
+import {ListPlugin} from "./components/ListPlugin";
+import {ListActions} from "./components/ListActions";
+import {ListItemNode, ListNode} from "@lexical/list";
 
 export const Editor = () => {
     let navigate = useNavigate()
@@ -59,7 +62,18 @@ export const Editor = () => {
         namespace: 'My Rich Text Editor',
         nodes: [
             BannerNode,
-            HeadingNode
+            HeadingNode,
+            HeadingNode,
+            ListNode,
+            ListItemNode,
+            QuoteNode,
+            // CodeNode,
+            // CodeHighlightNode,
+            // TableNode,
+            // TableCellNode,
+            // TableRowNode,
+            // AutoLinkNode,
+            // LinkNode
         ],
         theme: {
             text: {
@@ -107,6 +121,7 @@ export const Editor = () => {
                     <CustomHeadingActions/>
                     <CustomTextActions/>
                     <CustomAlignActions/>
+                    <ListActions/>
                 </div>
 
                 <RichTextPlugin
@@ -118,6 +133,7 @@ export const Editor = () => {
                 <OnChangePlugin/>
                 <CustomHeadingPlugin/>
                 <CustomBannerPlugin/>
+                <ListPlugin/>
             </LexicalComposer>
 
             <div className="action-menu">

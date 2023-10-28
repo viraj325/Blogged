@@ -1,13 +1,10 @@
 import {
     useLexicalComposerContext
-} from "@lexical/react/LexicalComposerContext";
+} from "@lexical/react/LexicalComposerContext"
 import {
-    FORMAT_ELEMENT_COMMAND,
-    OUTDENT_CONTENT_COMMAND,
-    INDENT_CONTENT_COMMAND
-} from 'lexical';
-import {Iterator} from "../Iterator";
-import {MdFormatAlignCenter, MdFormatAlignJustify, MdFormatAlignLeft, MdFormatAlignRight} from "react-icons/md";
+    FORMAT_ELEMENT_COMMAND
+} from 'lexical'
+import { MdFormatAlignCenter, MdFormatAlignJustify, MdFormatAlignLeft, MdFormatAlignRight } from "react-icons/md"
 
 export const CustomAlignActions = () => {
     const [editor] = useLexicalComposerContext();
