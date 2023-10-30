@@ -1,7 +1,7 @@
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
-import {INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND} from "@lexical/list"
+import {INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND} from "@lexical/list"
+import {MdFormatListBulleted, MdFormatListNumbered} from "react-icons/md"
 import React from "react"
-import {MdFormatListBulleted, MdFormatListNumbered} from "react-icons/md";
 
 export const ListActions = () => {
     const [editor] = useLexicalComposerContext()
