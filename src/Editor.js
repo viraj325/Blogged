@@ -25,6 +25,7 @@ import {ListActions} from "./components/ListActions"
 import {ListItemNode, ListNode} from "@lexical/list"
 import {ListPlugin} from "@lexical/react/LexicalListPlugin"
 import React, {useMemo, useState} from 'react'
+import {CodeHighlightNode, CodeNode} from "@lexical/code"
 import './App.css'
 import './Toolbar.css'
 
@@ -89,9 +90,10 @@ export const Editor = () => {
             ListItemNode,
             QuoteNode,
             LinkNode,
-            AutoLinkNode
-            // CodeNode,
-            // CodeHighlightNode,
+            AutoLinkNode,
+            CodeNode,
+            CodeHighlightNode,
+            // ImageNode
             // TableNode,
             // TableCellNode,
             // TableRowNode

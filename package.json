@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lexical/code": "^0.12.2",
     "@lexical/html": "^0.12.2",
     "@lexical/link": "^0.12.2",
     "@lexical/list": "^0.12.2",
