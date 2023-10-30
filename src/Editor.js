@@ -81,7 +81,7 @@ export const Editor = () => {
     }, [])*/
 
     const lexicalConfig = {
-        namespace: 'My Rich Text Editor',
+        namespace: "Viraj's Editor",
         nodes: [
             BannerNode,
             HeadingNode,
