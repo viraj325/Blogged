@@ -1,5 +1,6 @@
-import React, {useMemo, useState} from 'react'
 import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md"
+import { AutoLinkPlugin, createLinkMatcherWithRegExp } from '@lexical/react/LexicalAutoLinkPlugin'
+import LexicalClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin"
 import {LexicalComposer} from '@lexical/react/LexicalComposer'
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
 import {ContentEditable} from '@lexical/react/LexicalContentEditable'
@@ -14,6 +15,8 @@ import {HeadingNode, QuoteNode} from "@lexical/rich-text"
 import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
 import {CustomBannerActions} from "./components/CustomBannerActions"
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import {AutoLinkNode, LinkNode} from '@lexical/link'
 import {DocumentActions} from "./DocumentActions"
 import {BannerNode} from "./node/BannerNode"
 import {useNavigate} from "react-router-dom"
@@ -21,8 +24,26 @@ import {IoMdCheckmark, IoMdTrash} from "react-icons/io"
 import {ListActions} from "./components/ListActions"
 import {ListItemNode, ListNode} from "@lexical/list"
 import {ListPlugin} from "@lexical/react/LexicalListPlugin"
+import React, {useMemo, useState} from 'react'
 import './App.css'
 import './Toolbar.css'
+
+const urlRegExp = new RegExp (
+    /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/
+)
+
+const URL_REGEX = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
+
+const EMAIL_REGEX = /(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/
+
+const MATCHERS = [
+   createLinkMatcherWithRegExp(URL_REGEX, (text) => {
+      return text
+   }),
+   createLinkMatcherWithRegExp(EMAIL_REGEX, (text) => {
+      return `mailto:${text}`
+   })
+]
 
 export const Editor = () => {
     let navigate = useNavigate()
@@ -43,7 +64,7 @@ export const Editor = () => {
             }}
              */
         )
-    }, []);
+    }, [])
 
     /*const CustomPlaceholder = useMemo(() => {
         return (
@@ -67,13 +88,13 @@ export const Editor = () => {
             ListNode,
             ListItemNode,
             QuoteNode,
+            LinkNode,
+            AutoLinkNode
             // CodeNode,
             // CodeHighlightNode,
             // TableNode,
             // TableCellNode,
-            // TableRowNode,
-            // AutoLinkNode,
-            // LinkNode
+            // TableRowNode
         ],
         theme: {
             text: {
@@ -134,6 +155,9 @@ export const Editor = () => {
                 <CustomHeadingPlugin/>
                 <CustomBannerPlugin/>
                 <ListPlugin/>
+                <LinkPlugin validateUrl={validateUrl} />
+                <AutoLinkPlugin matchers={MATCHERS} />
+                <LexicalClickableLinkPlugin />
             </LexicalComposer>
 
             <div className="action-menu">
@@ -155,4 +179,8 @@ export const Editor = () => {
             </div>
         </div>
     )
+}
+
+export function validateUrl(url) {
+    return url === 'https://' || urlRegExp.test(url)
 }
