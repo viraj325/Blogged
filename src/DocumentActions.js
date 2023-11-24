@@ -69,7 +69,7 @@ export const DocumentActions = ({title, tags}) => {
             console.log(type)
             if (type === "firebase") {
                 // todo: make sure this works
-                uploadDocToFirebase(tmp, ((status) => {
+                uploadDocToFirebase(title, tags, tmp, ((status) => {
                     setShowLoading(status)
                 }))
             } else {

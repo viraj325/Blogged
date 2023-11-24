@@ -1,8 +1,8 @@
-import {getStorage, ref, uploadBytes} from "firebase/storage"
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { getFirestore } from "firebase/firestore"
 import { v4 as uuidv4 } from 'uuid'
 
-export function uploadDocToFirebase(data, callback) {
+export function uploadDocToFirebase(name, tags, data, callback) {
     const file = new Blob([data], {type: 'text/html'})
     const storage = getStorage()
     const storageRef = ref(storage, 'test/testdoc.html')
@@ -13,12 +13,16 @@ export function uploadDocToFirebase(data, callback) {
     // 'file' comes from the Blob or File API
     uploadBytes(storageRef, file, metadata).then((snapshot) => {
         console.log('Uploaded a blob or file!')
-        createFirestoreDocObject()
-        callback(false)
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL)
+        })
+        createFirestoreDocObject(name, tags, (() => {
+            callback(false)
+        }))
     })
 }
 
-export function createFirestoreDocObject(name, url, tags) {
+export function createFirestoreDocObject(name, url, tags, callback) {
     const db = getFirestore()
     db.collection("default").doc("").set({
         "file_id": uuidv4(),
@@ -27,9 +31,10 @@ export function createFirestoreDocObject(name, url, tags) {
         "file_url": url,
         "date_created": Date.now(),
         "date_modified": Date.now(),
-        "tags": ""
+        "tags": tags
     }).then(r => {
         console.log(r)
+        callback()
     })
 }
 
