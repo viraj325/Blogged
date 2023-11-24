@@ -12,9 +12,15 @@ export const DocumentActions = ({title, tags, url}) => {
     const [showLoading, setShowLoading] = useState(false)
 
     useEffect(() => {
-        fetchMyDocument(url, ((text) => {
-
-        }))
+        console.log(url)
+        if (url !== undefined && url !== null) {
+            console.log("url is not null")
+            fetchMyDocument(url, ((text) => {
+                importHTML(text)
+            })).then(r => console.log(r))
+        } else {
+            console.log("url is null")
+        }
     }, [])
 
     const downloadHTMLFile = (data) => {
