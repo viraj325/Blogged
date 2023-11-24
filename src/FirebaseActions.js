@@ -1,5 +1,5 @@
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { getFirestore, getDocs, collection } from "firebase/firestore"
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage"
+import { getFirestore, getDocs, collection, deleteDoc, doc } from "firebase/firestore"
 import { v4 as uuidv4 } from 'uuid'
 
 export function uploadDocToFirebase(name, tags, data, callback) {
@@ -38,12 +38,24 @@ export function createFirestoreDocObject(name, url, tags, callback) {
     })
 }
 
-export function deleteDocFromFirebase() {
-    // something
+export function deleteDocFromFirebase(ref) {
+    const storage = getStorage()
+    // Create a reference to the file to delete
+    const docRef = ref(storage, ref)
+
+    // Delete the file
+    deleteObject(docRef).then(() => {
+        // File deleted successfully
+        console.log("File deleted successfully")
+    }).catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log("Uh-oh, an error occurred!")
+    })
 }
 
-export function deleteFirestoreDocObject() {
-    // do something
+export async function deleteFirestoreDocObject(title) {
+    const db = getFirestore()
+    await deleteDoc(doc(db, "default", title))
 }
 
 export function renameFirebaseDoc() {
@@ -51,8 +63,18 @@ export function renameFirebaseDoc() {
 }
 
 // todo support url as well
-export function retrieveHTMLFromFirebase(title) {
+// fixme find a way to load html, meanwhile the bottom function should be used
+function retrieveHTMLFromFirebase(title) {
     // do something
+}
+
+export async function fetchMyDocument(url) {
+    try {
+        let response = await fetch('/path/to/file.html') // Gets a promise
+        // document.body.innerHTML = await response.text() // Replaces body with response
+    } catch (err) {
+        console.log('Fetch error:' + err) // Error handling
+    }
 }
 
 export async function retrieveAllFirebaseDocs() {
