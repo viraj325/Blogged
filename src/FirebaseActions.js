@@ -2,7 +2,7 @@ import {getStorage, ref, uploadBytes} from "firebase/storage"
 import { getFirestore } from "firebase/firestore"
 import { v4 as uuidv4 } from 'uuid'
 
-function uploadDocToFirebase(data, callback) {
+export function uploadDocToFirebase(data, callback) {
     const file = new Blob([data], {type: 'text/html'})
     const storage = getStorage()
     const storageRef = ref(storage, 'test/testdoc.html')
@@ -18,7 +18,7 @@ function uploadDocToFirebase(data, callback) {
     })
 }
 
-function createFirestoreDocObject(name, url, tags) {
+export function createFirestoreDocObject(name, url, tags) {
     const db = getFirestore()
     db.collection("default").doc("").set({
         "file_id": uuidv4(),
@@ -33,22 +33,14 @@ function createFirestoreDocObject(name, url, tags) {
     })
 }
 
-function deleteDocFromFirebase() {
+export function deleteDocFromFirebase() {
     // something
 }
 
-function deleteFirestoreDocObject() {
+export function deleteFirestoreDocObject() {
     // do something
 }
 
-function renameFirebaseDoc() {
+export function renameFirebaseDoc() {
     // do something
-}
-
-module.exports = {
-    uploadDocToFirebase,
-    createFirestoreDocObject,
-    deleteDocFromFirebase,
-    deleteFirestoreDocObject,
-    renameFirebaseDoc
 }

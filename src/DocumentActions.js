@@ -3,9 +3,10 @@ import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
 import React, {useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
-import uploadDocToFirebase from "./FirebaseActions";
+import {getStorage, ref, uploadBytes} from "firebase/storage"
+import {uploadDocToFirebase} from "./FirebaseActions"
 
-export const DocumentActions = () => {
+export const DocumentActions = ({title, tags}) => {
     const inputFile = useRef(null)
     const [editor] = useLexicalComposerContext()
     const [type, setType] = useState("firebase")
@@ -79,6 +80,7 @@ export const DocumentActions = () => {
 
     return (
         <div style={{display: "flex"}}>
+            <button className="menu-item" onClick={()=> {console.log(title)}}>test_title</button>
             {
                 showLoading ? <button style={{transition: '0.3s'}} className="menu-item">Syncing</button> :
                 <button style={{transition: '0.3s'}} className="menu-item" onClick={() => {

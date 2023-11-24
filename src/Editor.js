@@ -49,6 +49,7 @@ const MATCHERS = [
 export const Editor = () => {
     let navigate = useNavigate()
     const [title, setTitle] = useState('Untitled')
+    const [tags, setTags] = useState('null')
     const [isTitleEditDisabled, setTitleEditDisabled] = useState(true)
 
     const CustomContent = useMemo(() => {
@@ -138,7 +139,7 @@ export const Editor = () => {
 
             <LexicalComposer initialConfig={lexicalConfig}>
                 <div className="menu-bar">
-                    <DocumentActions/>
+                    <DocumentActions title={title} tags={tags}/>
                     <CustomHistoryActions/>
                     <CustomBannerActions/>
                     <CustomHeadingActions/>
