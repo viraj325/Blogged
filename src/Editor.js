@@ -46,7 +46,13 @@ const MATCHERS = [
    })
 ]
 
-export const Editor = () => {
+export const Editor = (props) => {
+    /*
+    props should contain the following:
+    - title
+    - tags
+    - url
+     */
     let navigate = useNavigate()
     const [title, setTitle] = useState('Untitled')
     const [tags, setTags] = useState('null')

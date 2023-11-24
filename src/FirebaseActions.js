@@ -15,19 +15,20 @@ export function uploadDocToFirebase(name, tags, data, callback) {
         console.log('Uploaded a blob or file!')
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL)
+            createFirestoreDocObject(name, "", downloadURL, tags, (() => {
+                callback(false)
+            }))
         })
-        createFirestoreDocObject(name, tags, (() => {
-            callback(false)
-        }))
     })
 }
 
-export function createFirestoreDocObject(name, url, tags, callback) {
+export function createFirestoreDocObject(name, overview, url, tags, callback) {
     const db = getFirestore()
     db.collection("default").doc("").set({
         "file_id": uuidv4(),
         "file_name": name,
         "file_type": "html",
+        "file_overview": overview,
         "file_url": url,
         "date_created": Date.now(),
         "date_modified": Date.now(),
