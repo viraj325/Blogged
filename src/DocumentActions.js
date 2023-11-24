@@ -33,7 +33,9 @@ export const DocumentActions = ({title, tags, url}) => {
     }
 
     const saveLocalSnapshot = () => {
+        const tmpHTML = $generateHtmlFromNodes(editor)
         // do something
+        /* save the html */
     }
 
     const importHTML = (data) => {
