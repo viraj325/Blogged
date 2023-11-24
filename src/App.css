@@ -102,12 +102,15 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+/** Maybe add another width from 400 to 450 and have height be longer in 450 **/
+@media screen and (max-width: 450px) {
     .main-page {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         margin-left: 0;
         margin-right: 0;
+        height: 575px;
+        overflow: auto;
     }
 
     .main-div {

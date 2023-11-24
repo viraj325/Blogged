@@ -130,7 +130,7 @@ export const Editor = () => {
                 <button className="circular-button" onClick={() => {
                     navigate("/")
                 }}><MdArrowBack/></button>
-                <input disabled={isTitleEditDisabled} style={{textAlign: "start"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
+                <input disabled={isTitleEditDisabled} style={{textAlign: "start", width: "80%"}} className="title" type="text" id="title" name="title" value={title} onChange={(v) => {
                     setTitle(v.target.value)
                     console.log("New Title: " + title)
                 }}/>

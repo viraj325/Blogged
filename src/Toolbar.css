@@ -36,8 +36,8 @@
     overflow-x: auto;
     flex-direction: row;
     margin-top: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
     height: auto;
     outline: none;
     border: none;
@@ -83,7 +83,8 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+/** Maybe add another width from 400 to 450 and have height be longer in 450 **/
+@media screen and (max-width: 450px) {
     .menu-bar {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
