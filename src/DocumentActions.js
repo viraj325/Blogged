@@ -1,13 +1,9 @@
+import {MdOutlineCloudUpload, MdOutlineFileDownload, MdOutlineFileUpload} from "react-icons/md"
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
-import { getStorage, ref, uploadBytes } from "firebase/storage"
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
-import {
-    MdOutlineCloudUpload,
-    MdOutlineFileDownload,
-    MdOutlineFileUpload
-} from "react-icons/md"
 import React, {useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
+import uploadDocToFirebase from "./FirebaseActions";
 
 export const DocumentActions = () => {
     const inputFile = useRef(null)
@@ -22,22 +18,6 @@ export const DocumentActions = () => {
         element.download = "myFile.html"
         // document.body.appendChild(element) // Required for this to work in FireFox
         element.click()
-    }
-
-    const uploadHTMLFirebase = (data) => {
-        const file = new Blob([data], {type: 'text/html'})
-
-        const storage = getStorage()
-        const storageRef = ref(storage, 'test/testdoc.html')
-        const metadata = {
-            contentType: 'text/html'
-        }
-
-        // 'file' comes from the Blob or File API
-        uploadBytes(storageRef, file, metadata).then((snapshot) => {
-            console.log('Uploaded a blob or file!')
-            setShowLoading(false)
-        })
     }
 
     const saveLocalSnapshot = () => {}
@@ -86,7 +66,14 @@ export const DocumentActions = () => {
             const tmp = $generateHtmlFromNodes(editor)
             console.log(tmp)
             console.log(type)
-            type === "firebase" ? uploadHTMLFirebase(tmp) : downloadHTMLFile(tmp)
+            if (type === "firebase") {
+                // todo: make sure this works
+                uploadDocToFirebase(tmp, ((status) => {
+                    setShowLoading(status)
+                }))
+            } else {
+                downloadHTMLFile(tmp)
+            }
         })
     }
 

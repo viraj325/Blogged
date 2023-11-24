@@ -1,5 +1,5 @@
 import {MdArrowBack, MdDriveFileRenameOutline, MdEmail, MdFolder, MdModeNight, MdShare} from "react-icons/md"
-import { AutoLinkPlugin, createLinkMatcherWithRegExp } from '@lexical/react/LexicalAutoLinkPlugin'
+import {AutoLinkPlugin, createLinkMatcherWithRegExp} from '@lexical/react/LexicalAutoLinkPlugin'
 import LexicalClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin"
 import {LexicalComposer} from '@lexical/react/LexicalComposer'
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin"
@@ -15,7 +15,7 @@ import {HeadingNode, QuoteNode} from "@lexical/rich-text"
 import {CustomHeadingPlugin} from "./components/CustomHeadingPlugin"
 import {CustomBannerPlugin} from "./components/CustomBannerPlugin"
 import {CustomBannerActions} from "./components/CustomBannerActions"
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import {LinkPlugin} from '@lexical/react/LexicalLinkPlugin'
 import {AutoLinkNode, LinkNode} from '@lexical/link'
 import {DocumentActions} from "./DocumentActions"
 import {BannerNode} from "./node/BannerNode"
