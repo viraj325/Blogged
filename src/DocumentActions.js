@@ -3,7 +3,6 @@ import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
 import React, {useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
-import {getStorage, ref, uploadBytes} from "firebase/storage"
 import {uploadDocToFirebase} from "./FirebaseActions"
 
 export const DocumentActions = ({title, tags}) => {
@@ -21,9 +20,7 @@ export const DocumentActions = ({title, tags}) => {
         element.click()
     }
 
-    const saveLocalSnapshot = () => {}
-
-    const importHTMLFromCloud = () => {
+    const saveLocalSnapshot = () => {
         // do something
     }
 

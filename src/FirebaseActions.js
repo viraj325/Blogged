@@ -1,5 +1,5 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { getFirestore } from "firebase/firestore"
+import { getFirestore, getDocs, collection } from "firebase/firestore"
 import { v4 as uuidv4 } from 'uuid'
 
 export function uploadDocToFirebase(name, tags, data, callback) {
@@ -48,4 +48,18 @@ export function deleteFirestoreDocObject() {
 
 export function renameFirebaseDoc() {
     // do something
+}
+
+// todo support url as well
+export function retrieveHTMLFromFirebase(title) {
+    // do something
+}
+
+export async function retrieveAllFirebaseDocs() {
+    const db = getFirestore()
+    const querySnapshot = await getDocs(collection(db, "default"))
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data())
+    })
 }
