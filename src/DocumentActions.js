@@ -1,9 +1,10 @@
-import {MdOutlineCloudUpload, MdOutlineFileDownload, MdOutlineFileUpload} from "react-icons/md"
+import {MdOutlineCloudUpload, MdOutlineFileDownload, MdOutlineFileUpload, MdSync} from "react-icons/md"
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
-import React, {useEffect, useRef, useState} from "react"
+import React, {useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
 import {fetchMyDocument, uploadDocToFirebase} from "./FirebaseActions"
+import {saveLocalSnapshot} from "./Utils";
 
 export const DocumentActions = ({title, tags, url}) => {
     const inputFile = useRef(null)
@@ -11,7 +12,9 @@ export const DocumentActions = ({title, tags, url}) => {
     const [type, setType] = useState("firebase")
     const [showLoading, setShowLoading] = useState(false)
 
-    useEffect(() => {
+    loadDocument()
+
+    function loadDocument() {
         console.log(url)
         if (url !== undefined && url !== null) {
             console.log("url is not null")
@@ -21,7 +24,7 @@ export const DocumentActions = ({title, tags, url}) => {
         } else {
             console.log("url is null")
         }
-    }, [])
+    }
 
     const downloadHTMLFile = (data) => {
         const element = document.createElement("a")
@@ -30,12 +33,6 @@ export const DocumentActions = ({title, tags, url}) => {
         element.download = "blogged_temp_rename.html"
         // document.body.appendChild(element) // Required for this to work in FireFox
         element.click()
-    }
-
-    const saveLocalSnapshot = () => {
-        const tmpHTML = $generateHtmlFromNodes(editor)
-        // do something
-        /* save the html */
     }
 
     const importHTML = (data) => {
@@ -91,6 +88,9 @@ export const DocumentActions = ({title, tags, url}) => {
 
     return (
         <div style={{display: "flex"}}>
+            <button className="menu-item" onClick={() => {
+                saveLocalSnapshot(editor)
+            }}><MdSync/></button>
             {
                 showLoading ? <button style={{transition: '0.3s'}} className="menu-item">Syncing</button> :
                 <button style={{transition: '0.3s'}} className="menu-item" onClick={() => {
