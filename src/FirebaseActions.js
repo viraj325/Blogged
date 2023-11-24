@@ -69,10 +69,11 @@ function retrieveHTMLFromFirebase(title) {
     // do something
 }
 
-export async function fetchMyDocument(url) {
+export async function fetchMyDocument(url, callback) {
     try {
-        let response = await fetch('/path/to/file.html') // Gets a promise
+        let response = await fetch(url) // Gets a promise
         // document.body.innerHTML = await response.text() // Replaces body with response
+        callback(response.text())
     } catch (err) {
         console.log('Fetch error:' + err) // Error handling
     }

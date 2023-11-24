@@ -1,15 +1,21 @@
 import {MdOutlineCloudUpload, MdOutlineFileDownload, MdOutlineFileUpload} from "react-icons/md"
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext"
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
-import React, {useRef, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
-import {uploadDocToFirebase} from "./FirebaseActions"
+import {fetchMyDocument, uploadDocToFirebase} from "./FirebaseActions"
 
-export const DocumentActions = ({title, tags}) => {
+export const DocumentActions = ({title, tags, url}) => {
     const inputFile = useRef(null)
     const [editor] = useLexicalComposerContext()
     const [type, setType] = useState("firebase")
     const [showLoading, setShowLoading] = useState(false)
+
+    useEffect(() => {
+        fetchMyDocument(url, ((text) => {
+
+        }))
+    }, [])
 
     const downloadHTMLFile = (data) => {
         const element = document.createElement("a")
@@ -77,7 +83,6 @@ export const DocumentActions = ({title, tags}) => {
 
     return (
         <div style={{display: "flex"}}>
-            <button className="menu-item" onClick={()=> {console.log(title)}}>test_title</button>
             {
                 showLoading ? <button style={{transition: '0.3s'}} className="menu-item">Syncing</button> :
                 <button style={{transition: '0.3s'}} className="menu-item" onClick={() => {
