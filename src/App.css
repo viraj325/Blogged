@@ -42,10 +42,13 @@
     margin-left: 10%;
     margin-right: 10%;
     height: auto;
-    min-height: 575px;
+    min-height: 250px;
+    max-height: 700px;
     outline: none;
     border: none;
     transition: 0.5s;
+    overflow: auto;
+    /** max-height: 800px;  575px**/
 }
 
 .text-bold {
