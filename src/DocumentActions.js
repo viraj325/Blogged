@@ -15,7 +15,7 @@ export const DocumentActions = () => {
         const element = document.createElement("a")
         const file = new Blob([data], {type: 'text/html'})
         element.href = URL.createObjectURL(file)
-        element.download = "myFile.html"
+        element.download = "blogged_temp_rename.html"
         // document.body.appendChild(element) // Required for this to work in FireFox
         element.click()
     }

@@ -1,4 +1,6 @@
 import {getStorage, ref, uploadBytes} from "firebase/storage"
+import { getFirestore } from "firebase/firestore"
+import { v4 as uuidv4 } from 'uuid'
 
 function uploadDocToFirebase(data, callback) {
     const file = new Blob([data], {type: 'text/html'})
@@ -11,12 +13,24 @@ function uploadDocToFirebase(data, callback) {
     // 'file' comes from the Blob or File API
     uploadBytes(storageRef, file, metadata).then((snapshot) => {
         console.log('Uploaded a blob or file!')
+        createFirestoreDocObject()
         callback(false)
     })
 }
 
-function createFirestoreDocObject() {
-    // do something
+function createFirestoreDocObject(name, url, tags) {
+    const db = getFirestore()
+    db.collection("default").doc("").set({
+        "file_id": uuidv4(),
+        "file_name": name,
+        "file_type": "html",
+        "file_url": url,
+        "date_created": Date.now(),
+        "date_modified": Date.now(),
+        "tags": ""
+    }).then(r => {
+        console.log(r)
+    })
 }
 
 function deleteDocFromFirebase() {
