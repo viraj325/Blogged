@@ -4,7 +4,7 @@ import {$generateHtmlFromNodes, $generateNodesFromDOM} from "@lexical/html"
 import React, {useRef, useState} from "react"
 import {$getRoot, $insertNodes} from "lexical"
 import {fetchMyDocument, uploadDocToFirebase} from "./FirebaseActions"
-import {saveLocalSnapshot} from "./Utils";
+import {saveLocalSnapshot} from "./Utils"
 
 export const DocumentActions = ({title, tags, url}) => {
     const inputFile = useRef(null)

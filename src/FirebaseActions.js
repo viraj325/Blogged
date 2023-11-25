@@ -24,12 +24,13 @@ export function uploadDocToFirebase(name, tags, data, callback) {
 
 export function createFirestoreDocObject(name, overview, url, tags, callback) {
     const db = getFirestore()
-    db.collection("default").doc("").set({
+    db.collection("default").doc().set({
         "file_id": uuidv4(),
         "file_name": name,
         "file_type": "html",
         "file_overview": overview,
         "file_url": url,
+        "file_path": "null",
         "date_created": Date.now(),
         "date_modified": Date.now(),
         "tags": tags
