@@ -84,11 +84,14 @@ export async function fetchMyDocument(url, callback) {
     }
 }
 
-export async function retrieveAllFirebaseDocs() {
+export async function retrieveAllFirebaseDocs(callback) {
+    let responseArray = []
     const db = getFirestore()
     const querySnapshot = await getDocs(collection(db, "default"))
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data())
+        responseArray.push(doc.data())
     })
+    callback(responseArray)
 }
