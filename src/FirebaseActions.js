@@ -40,7 +40,7 @@ export function createFirestoreDocObject(name, overview, url, tags, callback) {
     })
 }
 
-export function deleteDocFromFirebase(ref) {
+export function deleteDocFromFirebase(ref, title) {
     const storage = getStorage()
     // Create a reference to the file to delete
     const docRef = ref(storage, ref)
@@ -49,6 +49,7 @@ export function deleteDocFromFirebase(ref) {
     deleteObject(docRef).then(() => {
         // File deleted successfully
         console.log("File deleted successfully")
+        deleteFirestoreDocObject(title).then(r => console.log(r))
     }).catch((error) => {
         // Uh-oh, an error occurred!
         console.log("Uh-oh, an error occurred!")
@@ -60,14 +61,17 @@ export async function deleteFirestoreDocObject(title) {
     await deleteDoc(doc(db, "default", title))
 }
 
-export function renameFirebaseDoc() {
-    // do something
+// todo test this
+export function renameFirebaseDoc(ref, data, newTitle, oldTitle) {
+    deleteDocFromFirebase(ref, oldTitle)
+    uploadDocToFirebase(newTitle, "", data, (() => {
+        console.log("Renamed file successfully")
+    }))
 }
 
-// todo support url as well
-// fixme find a way to load html, meanwhile the bottom function should be used
 function retrieveHTMLFromFirebase(title) {
-    // do something
+    // todo support url as well
+    // fixme find a way to load html, meanwhile the bottom function should be used
 }
 
 export async function fetchMyDocument(url, callback) {
