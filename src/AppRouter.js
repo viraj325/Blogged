@@ -6,8 +6,8 @@ export default function AppRouter() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main />}/>
-                <Route path="/editor" element={<App/>}/>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/editor/:action/:docID" element={<App/>}/>
             </Routes>
         </BrowserRouter>
     )

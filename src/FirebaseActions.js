@@ -85,6 +85,7 @@ export async function fetchMyDocument(url, callback) {
 }
 
 export async function retrieveAllFirebaseDocs(callback) {
+    console.log("Retrieving all firebase docs")
     let responseArray = []
     const db = getFirestore()
     const querySnapshot = await getDocs(collection(db, "default"))

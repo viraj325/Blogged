@@ -54,9 +54,14 @@ export const Editor = (props) => {
     - url
      */
     let navigate = useNavigate()
+    const [isTitleEditDisabled, setTitleEditDisabled] = useState(true)
     const [title, setTitle] = useState('Untitled')
     const [tags, setTags] = useState('null')
-    const [isTitleEditDisabled, setTitleEditDisabled] = useState(true)
+    const [action, setAction] = useState(props.action)
+    const [docID, setDocID] = useState(props.docID)
+
+    console.log("Action: " + props.action + " --- State Action: " + action)
+    console.log("Document ID: " + props.docID + " --- State Document ID: " + docID)
 
     const CustomContent = useMemo(() => {
         return (

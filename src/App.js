@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app"
+import {useParams} from "react-router-dom"
 import { Editor } from "./Editor"
 import './App.css'
 
@@ -16,9 +17,11 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 function App() {
+  const { action, docID } = useParams()
+
   return (
     <div>
-      <Editor/>
+      <Editor action={action} docID={docID}/>
     </div>
   )
 }

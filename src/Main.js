@@ -21,7 +21,7 @@ export default function Main() {
             <BrowserView>
                 <h5>This is rendered only in browser</h5>
                 <button className="action-button" title="New Post" onClick={() => {
-                    navigate('/editor')
+                    navigate('/editor/new/test')
                 }}><MdAdd/></button>
                 <button className="action-button" title="Search" onClick={() => {
                     console.log('Search clicked')
@@ -42,7 +42,7 @@ export default function Main() {
                         })
                     }
                     <button className="action-button" title="New Post" onClick={() => {
-                        navigate('/editor')
+                        navigate('/editor/new/test')
                     }}><MdAdd/></button>
                     <button className="action-button" title="Search" onClick={() => {
                         console.log('Search clicked')
