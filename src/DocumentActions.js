@@ -6,13 +6,24 @@ import {$getRoot, $insertNodes} from "lexical"
 import {fetchMyDocument, uploadDocToFirebase} from "./FirebaseActions"
 import {saveLocalSnapshot} from "./Utils"
 
-export const DocumentActions = ({title, tags, url}) => {
+export const DocumentActions = ({title, tags, url, action, docID}) => {
     const inputFile = useRef(null)
     const [editor] = useLexicalComposerContext()
     const [type, setType] = useState("firebase")
     const [showLoading, setShowLoading] = useState(false)
 
     loadDocument()
+
+    if (action !== "new") {
+        console.log("Fetching document with ID: " + docID)
+        loadDocumentFromCloud()
+    } else {
+        console.log("New document")
+    }
+
+    function loadDocumentFromCloud() {
+        console.log("loadDocumentFromCloud")
+    }
 
     function loadDocument() {
         console.log(url)

@@ -28,6 +28,7 @@ import React, {useMemo, useState} from 'react'
 import {CodeHighlightNode, CodeNode} from "@lexical/code"
 import './App.css'
 import './Toolbar.css'
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 
 const urlRegExp = new RegExp (
     /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/
@@ -150,7 +151,7 @@ export const Editor = (props) => {
 
             <LexicalComposer initialConfig={lexicalConfig}>
                 <div className="menu-bar">
-                    <DocumentActions title={title} tags={tags}/>
+                    <DocumentActions title={title} tags={tags} action={action} docID={docID}/>
                     <CustomHistoryActions/>
                     <CustomBannerActions/>
                     <CustomHeadingActions/>
